@@ -1,0 +1,182 @@
+# edited by yulin 2022-08-09
+# "deprecated" "clang-format xx" "language"
+# empty comment means I don't know how, or I have trouble to config
+---
+Language: Cpp
+DisableFormat: false
+AccessModifierOffset: -4
+AlignAfterOpenBracket: Align
+AlignArrayOfStructures: Right
+AlignConsecutiveAssignments: None
+AlignConsecutiveBitFields: Consecutive
+AlignConsecutiveDeclarations: None
+AlignConsecutiveMacros: None
+AlignEscapedNewlines: Left
+AlignOperands: Align
+AlignTrailingComments: true
+AllowAllArgumentsOnNextLine: false
+# AllowAllConstructorInitializersOnNextLine:  # deprecated
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLambdasOnASingleLine: None
+AllowShortLoopsOnASingleLine: false
+# AlwaysBreakAfterDefinitionReturnType:  # deprecated
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: false
+AlwaysBreakTemplateDeclarations: Yes
+# AttributeMacros:
+BinPackArguments: true
+BinPackParameters: true
+BitFieldColonSpacing: After
+BraceWrapping:
+    AfterCaseLabel: false
+    AfterClass: false
+    AfterControlStatement: Never
+    AfterEnum: false
+    AfterFunction: false
+    AfterNamespace: false
+    AfterObjCDeclaration: false # ObjC
+    AfterStruct: false
+    AfterUnion: false
+    AfterExternBlock: false
+    BeforeCatch: false
+    BeforeElse: false
+    BeforeLambdaBody: false
+    BeforeWhile: false
+    IndentBraces: false
+    SplitEmptyFunction: false
+    SplitEmptyRecord: false
+    SplitEmptyNamespace: false
+BreakAfterJavaFieldAnnotations: true # Java
+BreakBeforeBinaryOperators: None
+BreakBeforeBraces: Attach
+BreakBeforeConceptDeclarations: true
+BreakBeforeTernaryOperators: false
+BreakConstructorInitializers: BeforeColon
+BreakInheritanceList: AfterComma
+BreakStringLiterals: true
+ColumnLimit: 0
+# CommentPragmas:
+CompactNamespaces: false
+# ConstructorInitializerAllOnOneLineOrOnePerLine:  # deprecated
+ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth: 4
+Cpp11BracedListStyle: true
+DeriveLineEnding: true
+DerivePointerAlignment: false
+EmptyLineAfterAccessModifier: Never
+EmptyLineBeforeAccessModifier: LogicalBlock
+ExperimentalAutoDetectBinPacking: false
+FixNamespaceComments: true
+# ForEachMacros:
+# IfMacros:
+IncludeBlocks: Regroup
+IncludeCategories:
+    - Regex: "^<.*>"
+      Priority: 1
+      SortPriority: 0
+      CaseSensitive: false
+    - Regex: ".*"
+      Priority: 2
+      SortPriority: 0
+      CaseSensitive: false
+# IncludeIsMainRegex:
+# IncludeIsMainSourceRegex:
+IndentAccessModifiers: false
+IndentCaseBlocks: false
+IndentCaseLabels: true
+IndentExternBlock: Indent
+IndentGotoLabels: false
+IndentPPDirectives: None
+IndentRequires: false
+IndentWidth: 4
+IndentWrappedFunctionNames: true
+# InsertBraces: true  # clang-format 15
+InsertTrailingCommas: None
+# JavaImportGroups:  # Java
+JavaScriptQuotes: Double # JavaScript
+JavaScriptWrapImports: true # JavaScript
+KeepEmptyLinesAtTheStartOfBlocks: false
+LambdaBodyIndentation: Signature
+# MacroBlockBegin:
+# MacroBlockEnd:
+MaxEmptyLinesToKeep: 1
+NamespaceIndentation: All
+# NamespaceMacros:
+ObjCBinPackProtocolList: Never # ObjC
+ObjCBlockIndentWidth: 4 # ObjC
+ObjCBreakBeforeNestedBlockParam: false # ObjC
+ObjCSpaceAfterProperty: false # ObjC
+ObjCSpaceBeforeProtocolList: true # ObjC
+PPIndentWidth: -1
+PackConstructorInitializers: NextLine
+# PenaltyBreakAssignment:
+# PenaltyBreakBeforeFirstCallParameter:
+# PenaltyBreakComment:
+# PenaltyBreakFirstLessLess:
+# PenaltyBreakOpenParenthesis:
+# PenaltyBreakString:
+# PenaltyBreakTemplateDeclaration:
+# PenaltyExcessCharacter:
+# PenaltyIndentedWhitespace:
+# PenaltyReturnTypeOnItsOwnLine:
+PointerAlignment: Right
+QualifierAlignment: Custom
+QualifierOrder: ["inline", "static", "const", "constexpr", "volatile", "restrict", "type"]
+# RawStringFormats:
+ReferenceAlignment: Right
+ReflowComments: false
+RemoveBracesLLVM: false
+# RequiresClausePosition: OwnLine  # clang-format 15
+SeparateDefinitionBlocks: Leave
+ShortNamespaceLines: 0
+SortIncludes: CaseInsensitive
+SortJavaStaticImport: Before # Java
+SortUsingDeclarations: true
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
+SpaceAfterTemplateKeyword: false
+SpaceAroundPointerQualifiers: Default
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: false
+SpaceBeforeCpp11BracedList: false
+SpaceBeforeCtorInitializerColon: true
+SpaceBeforeInheritanceColon: true
+SpaceBeforeParens: Custom
+SpaceBeforeParensOptions:
+    AfterControlStatements: true
+    AfterForeachMacros: true
+    AfterFunctionDeclarationName: false
+    AfterFunctionDefinitionName: false
+    AfterIfMacros: true
+    AfterOverloadedOperator: false
+    #AfterRequiresInClause: false  # clang-format 14
+    #AfterRequiresInExpression: false  # clang-format 14
+    BeforeNonEmptyParentheses: false
+SpaceBeforeRangeBasedForLoopColon: true
+SpaceBeforeSquareBrackets: false
+SpaceInEmptyBlock: false
+SpaceInEmptyParentheses: false
+SpacesBeforeTrailingComments: 2
+SpacesInAngles: Never
+SpacesInCStyleCastParentheses: false
+SpacesInConditionalStatement: false
+SpacesInContainerLiterals: false
+SpacesInLineCommentPrefix:
+    Minimum: 1
+    Maximum: -1
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+Standard: Latest
+# StatementAttributeLikeMacros:
+# StatementMacros:
+TabWidth: 4
+# TypenameMacros:
+UseCRLF: false
+UseTab: Never
+# WhitespaceSensitiveMacros:
+

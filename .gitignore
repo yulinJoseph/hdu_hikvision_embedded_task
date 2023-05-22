@@ -1,0 +1,12 @@
+.DS_Store
+.vscode/
+
+*.o
+
+mod_led/*
+!mod_led/Makefile
+!mod_led/Kbuild
+!mod_led/led_ctrl.c
+!mod_led/test_led.c
+!mod_led/led_ctrl.ko
+!mod_led/test_led
