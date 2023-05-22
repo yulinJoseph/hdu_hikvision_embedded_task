@@ -1,0 +1,2 @@
+cd ./driver && ./load_modules_FH8862.sh && cd ..
+cp ./lib/imx415_mipi_attr.hex /home
