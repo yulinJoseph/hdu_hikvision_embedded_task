@@ -14,6 +14,7 @@ int main() {
     int     recv_len;
     int     write_leng;
     char    buf[MAXLINE];
+//自己先手动创建文件
     if ((fp = fopen("/home/h264.ps", "w")) == NULL) {
         perror("Open file failed\n");
         exit(0);

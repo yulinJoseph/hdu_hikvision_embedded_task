@@ -207,7 +207,7 @@ int main(int argc, char *argv[]) {
     isp_set_param(ISP_NR, 1);
     isp_set_param(ISP_MF, 0);
 
-    sleep(10);
+    sleep(60);
 
       //tcp传输文件至Ubuntu /home 
     FILE    *mfp;

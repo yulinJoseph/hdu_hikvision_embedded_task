@@ -22,7 +22,12 @@
 ```shell
 cd ./driver && ./load_modules_FH8862.sh && cd ..
 cp ./lib/imx415_mipi_attr.hex /home
+（前两行命令可用 ./went2 执行）
 cd mod_led && make && insmod led_ctrl.ko
 mknod /dev/led_ctrl c 251 0
 ```
-数字 `251` 需要根据 `cat /proc/devices` 中的 `led_ctrl` 的主设备号来确定
+1.数字 `251` 需要根据 `cat /proc/devices` 中的 `led_ctrl` 的主设备号来确定
+
+2.main.cpp添加的作为客户端的代码；
+
+3.tcp文件夹下的代码需拷贝到Ubuntu下 作为服务端使用（因为Ubuntu的用户权限原因，需要自己先创建储存位置的文件）
