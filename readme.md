@@ -10,7 +10,7 @@
 - [x] osd 从勾边改为自动反色
 - [x] 设置标准时间
 - [x] 开始发流的时候，灯亮起来
-- [ ] pc 端保存 1 分钟录像
+- [x] pc 端保存 1 分钟录像
 
 ## 说明
 
@@ -25,9 +25,8 @@ cp ./lib/imx415_mipi_attr.hex /home
 （前两行命令可用 ./went2 执行）
 cd mod_led && make && insmod led_ctrl.ko
 mknod /dev/led_ctrl c 251 0
+# 数字 `251` 需要根据 `cat /proc/devices` 中的 `led_ctrl` 的主设备号来确定
 ```
-1.数字 `251` 需要根据 `cat /proc/devices` 中的 `led_ctrl` 的主设备号来确定
+6. 由于字库 `inc/font_array.h` 中对中文只有 `gb2312` 的支持，所以除了 `main.cpp` 使用 `gb2312` 之外，其他文件都使用 `utf-8` 编码
 
-2.main.cpp添加的作为客户端的代码；
-
-3.tcp文件夹下的代码需拷贝到Ubuntu下 作为服务端使用（因为Ubuntu的用户权限原因，需要自己先创建储存位置的文件）
+7. `tcp` 文件夹下的代码需拷贝到 pc 下 作为服务端使用，由于 Ubuntu 的用户权限，需要自己先创建储存位置的文件

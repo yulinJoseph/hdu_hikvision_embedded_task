@@ -2,6 +2,7 @@
 .vscode/
 
 *.o
+main
 
 mod_led/*
 !mod_led/Makefile

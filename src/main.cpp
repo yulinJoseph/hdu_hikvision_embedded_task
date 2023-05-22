@@ -1,17 +1,15 @@
+#include <arpa/inet.h>
 #include <ctime>
 #include <fcntl.h>
 #include <iostream>
+#include <netinet/in.h>
 #include <signal.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/socket.h>
+#include <sys/types.h>
 #include <thread>
 #include <unistd.h>
-
-
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
 
 // FH related
 #include "dsp/fh_system_mpi.h"
@@ -30,10 +28,7 @@
 #include "wrapper/macro.h"
 #include "wrapper/venc.h"
 
-#define TRACE_PROC "/proc/driver/trace"
-#define    MAXLINE        1024
 isp_sensor_if sensor_func;
-
 
 static int g_sig_stop = 0;
 static void sample_vlcview_handle_sig(int signo) {
@@ -158,7 +153,7 @@ std::string get_cur_time() {
 }
 
 int main(int argc, char *argv[]) {
-    // ï¿½ï¿½ï¿½ï¿½ï¿½ÅºÅ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    // ÉèÖÃĞÅºÅ´¦Àíº¯Êı
     signal(SIGINT, sample_vlcview_handle_sig);
     signal(SIGQUIT, sample_vlcview_handle_sig);
     signal(SIGKILL, sample_vlcview_handle_sig);
@@ -171,25 +166,25 @@ int main(int argc, char *argv[]) {
     led.on();
 
     Config config(3840, 2160, 30, 0);
-    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½
+    // ÅäÖÃÊÓÆµ»º´æ³Ø
     _IF_bool(config.init_media_cache());
-    // ï¿½ï¿½ï¿½ï¿½ÏµÍ³
+    // Æô¶¯ÏµÍ³
     _IF_0(FH_SYS_Init());
-    // ï¿½ï¿½Ê¼ï¿½ï¿½ ISP
+    // ³õÊ¼»¯ ISP
     _IF_bool(config.init_isp(&sensor_func));
-    // ï¿½ï¿½Ê¼ï¿½ï¿½ vpu
+    // ³õÊ¼»¯ vpu
     _IF_bool(config.init_vpu());
 
-    // ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½
+    // ÅäÖÃ±àÂë
     Venc venc(3840, 2160, 30, 3840, 2160, 0, 0);
 
-    // ï¿½İ²ï¿½ï¿½ï¿½ï¿½Ş¸ï¿½
+    // Ôİ²»×öĞŞ¸Ä
     sample_dmc_init(dst_ip, port, 1);
     std::thread thread_stream(get_stream_proc, &g_get_stream_stop);
 
     Drawer drawer{};
     _IF_bool(drawer.put_text(0, std::string("hello world"), 0, 0););
-    _IF_bool(drawer.put_text(1, std::string("Ò»ï¿½ï¿½ï¿½ï¿½"), 100, 100););
+    _IF_bool(drawer.put_text(1, std::string("Ò»¶şÈı"), 100, 100););
     std::thread thread_timer([&drawer]() {
         while (true) {
             drawer.put_text(2, get_cur_time(), 200, 200);
@@ -209,18 +204,18 @@ int main(int argc, char *argv[]) {
 
     sleep(60);
 
-      //tcpä¼ è¾“æ–‡ä»¶è‡³Ubuntu /home 
-    FILE    *mfp;
-    char    buf[MAXLINE];
-    int     read_len;
-    int     send_len;
+    // tcp ´«ÊäÎÄ¼şÖÁ Ubuntu /home
+    FILE *mfp;
+    char buf[MAXLINE];
+    int read_len;
+    int send_len;
 
-    if ((mfp = fopen("/home/h264.ps","r")) == NULL) {
+    if ((mfp = fopen("/home/h264.ps", "r")) == NULL) {
         perror("Open file failed\n");
         exit(0);
     }
     int fd = socket(PF_INET, SOCK_STREAM, 0);
-    if(fd == -1) {
+    if (fd == -1) {
         perror("socket");
         return -1;
     }
@@ -230,46 +225,47 @@ int main(int argc, char *argv[]) {
     seraddr.sin_family = AF_INET;
     seraddr.sin_port = htons(9999);
 
-    // è¿æ¥æœåŠ¡å™¨
+    // Á¬½Ó·şÎñÆ÷
     int ret = connect(fd, (struct sockaddr *)&seraddr, sizeof(seraddr));
 
-    if(ret == -1){
+    if (ret == -1) {
         perror("connect");
         return -1;
     }
 
-    int cnt=0;
-    memset(buf,'\0', MAXLINE);
-    while ((read_len = fread(buf, sizeof(char), MAXLINE, mfp)) >0 ) {
+    int cnt = 0;
+    memset(buf, '\0', MAXLINE);
+    while ((read_len = fread(buf, sizeof(char), MAXLINE, mfp)) > 0) {
         send_len = send(fd, buf, read_len, 0);
-        if ( send_len < 0 ) {
+        if (send_len < 0) {
             perror("Send file failed\n");
             exit(0);
         }
-        memset(buf,'\0', MAXLINE);
-        cnt+=read_len;
+        memset(buf, '\0', MAXLINE);
+        cnt += read_len;
     }
-    printf("Send total = %d\n",cnt);
+    printf("Send total = %d\n", cnt);
     // char sendBuf[1024] = {0};
-    // memset(sendBuf,'\0', sizeof(sendBuf));
+    // memset(sendBuf, '\0', sizeof(sendBuf));
     // sprintf(sendBuf, " send data %d\n", cnt);
     // write(fd, sendBuf, strlen(sendBuf) + 1);
 
-    // // æ¥æ”¶
+    // // ½ÓÊÕ
     // int len = read(fd, sendBuf, sizeof(sendBuf));
-    // if(len == -1) {
-    //     perror("è¯»é”™è¯¯");
+    // if (len == -1) {
+    //     perror("¶Á´íÎó");
     //     return -1;
-    // }else if(len > 0) {
+    // } else if (len > 0) {
     //     printf("read buf = %s\n", sendBuf);
     // } else {
-    //     printf("æœåŠ¡å™¨å·²ç»æ–­å¼€è¿æ¥...\n");
+    //     printf("·şÎñÆ÷ÒÑ¾­¶Ï¿ªÁ¬½Ó...\n");
     //     break;
     // }
     fclose(mfp);
     close(fd);
 
-    std::cout<<"Send Finish"<<std::endl;;
+    std::cout << "Send Finish" << std::endl;
+
     led.off();
     exit(0);
 

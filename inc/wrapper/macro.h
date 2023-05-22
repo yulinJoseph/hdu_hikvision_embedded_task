@@ -6,6 +6,9 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+#define MAXLINE 1024
+#define TRACE_PROC "/proc/driver/trace"
+
 #define WR_PROC_DEV(device, cmd)                \
     {                                           \
         auto _tmp_fd = open(device, O_RDWR, 0); \
